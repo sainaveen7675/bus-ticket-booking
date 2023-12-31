@@ -1,0 +1,58 @@
+
+
+.trip{
+    display: flex;
+    justify-content: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-bottom: 20px;
+}
+.selectionContainer{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.form-select{
+    cursor: pointer;
+    border: 1px solid #29313F;
+    border-radius: 20px;
+}
+
+.input-group{
+    width: 45%;
+    display: flex; 
+    
+}
+
+.bi-arrow-left-right{
+    width: 20px;
+    height: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.fs{
+    height: 60px;
+}
+
+
+.bi-calendar-event-fill{
+    width: 40px;
+    height: 40px;
+    margin-top: 6px;
+    
+}
+
+.datepicker-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+
+.button{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
