@@ -1,39 +1,42 @@
 import React, { useState } from "react";
 import "./css/Booking.css";
 import "react-datepicker/dist/react-datepicker.css";
-import Datepicker from "./Datepicker";
+import DatePicker from 'react-datepicker';
+import { useNavigate } from "react-router-dom";
 
 const BookingContent = () => {
-  let cities = [
-    { value: 'Hyderabad', label: 'Hyderabad' },
-    { value: 'Mumbai', label: 'Mumbai' },
-    { value: 'Chennai', label: 'Chennai' },
-    { value: 'Delhi', label: 'Delhi' },
-    { value: 'Banglore', label: 'Banglore' },
-    { value: 'Kolkata', label: 'Kolkata' },
-    { value: 'Pune', label: 'Pune' }
-  ];
-  const [selectedOption1, setSelectedOption1] = useState("");
-  const handleDropdownChange1 = (event) => {
-    setSelectedOption1(event.target.value);
-  };
+  const navigate = useNavigate();
+  const [selectedDate, setSelectedDate] = useState(null);
 
+  let cities = [
+    { value: "Hyderabad", label: "Hyderabad" },
+    { value: "Mumbai", label: "Mumbai" },
+    { value: "Chennai", label: "Chennai" },
+    { value: "Delhi", label: "Delhi" },
+    { value: "Banglore", label: "Banglore" },
+    { value: "Kolkata", label: "Kolkata" },
+    { value: "Pune", label: "Pune" },
+  ];
+
+  const [selectedOption1, setSelectedOption1] = useState("");
   const [selectedOption2, setSelectedOption2] = useState("");
-  const handleDropdownChange2 = (event) => {
-    setSelectedOption2(event.target.value);
-  };
-  
-  const filteredCities = cities.filter(city => city.value !== selectedOption1);
-  cities = cities.filter(city => city.value !== selectedOption2);
-  
-  const [x1, setX1] = useState("");
-  const [x2, setX2] = useState("");
+
+  const filteredCities = cities.filter(
+    (city) => city.value !== selectedOption1
+  );
+  cities = cities.filter((city) => city.value !== selectedOption2);
+
+  const [alert, setAlert] = useState("");
+
   const btnClick = () => {
     console.log("clicked");
-    
-    setX1(selectedOption1);
-    setX2(selectedOption2);
-  }
+
+    if (!selectedOption1 || !selectedOption2 || !selectedDate) {
+      setAlert("Please enter all the fields");
+    } else {
+      navigate("/passangerDetails");
+    }
+  };
 
   return (
     <>
@@ -47,11 +50,14 @@ const BookingContent = () => {
               className="form-select"
               id="inputGroupSelect04"
               aria-label="Example select with button addon"
-              value={selectedOption1} onChange={handleDropdownChange1}
+              value={selectedOption1}
+              onChange={(e) => setSelectedOption1(e.target.value)}
             >
               <option value="">From</option>
               {cities.map((city, index) => (
-                <option key={city.value} value={city.value}>{city.label}</option>
+                <option key={city.value} value={city.value}>
+                  {city.label}
+                </option>
               ))}
             </select>
           </div>
@@ -73,18 +79,28 @@ const BookingContent = () => {
               className="form-select"
               id="inputGroupSelect04"
               aria-label="Example select with button addon"
-              value={selectedOption2} onChange={handleDropdownChange2}
+              value={selectedOption2}
+              onChange={(e) => setSelectedOption2(e.target.value)}
             >
               <option selected>To</option>
               {filteredCities.map((city, index) => (
-                <option key={city.value} value={city.value}>{city.label}</option>
+                <option key={city.value} value={city.value}>
+                  {city.label}
+                </option>
               ))}
             </select>
           </div>
         </div>
 
         <div className="datepicker-container">
-          <Datepicker />
+          <DatePicker
+            selected={selectedDate}
+            onChange={(date) => setSelectedDate(date)}
+            dateFormat="dd/MM/yyyy" // You can customize the format
+            isClearable // Adds a clear button to reset the date
+            className="form-select fs"
+            placeholderText="Select a date"
+          />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
@@ -95,14 +111,18 @@ const BookingContent = () => {
             <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5" />
           </svg>
         </div>
-
+        <div className="alert">{alert}</div>
         <div className="button">
-          <button type="button" class="btn btn-secondary btn-lg" onClick={()=>{btnClick()}}>
+          <button
+            type="button"
+            class="btn btn-secondary btn-lg"
+            onClick={() => {
+              btnClick();
+            }}
+          >
             Book
           </button>
         </div>
-        <h1>{x1}</h1>
-        <h1>{x2}</h1>
       </div>
     </>
   );

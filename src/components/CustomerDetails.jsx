@@ -32,7 +32,7 @@ const CustomerDetails = () => {
         setAlert("Please enter a valid 10-digit mobile number.");
         return; // Stop execution if mobile number is invalid
       } else {
-        navigate("/booking");
+        navigate("/passangerDetails/seatAndTimeSelection");
       }
     }
   };
@@ -40,7 +40,7 @@ const CustomerDetails = () => {
   return (
     <div>
       <div className="trip">
-        <h1>Booking Details</h1>
+        <h1>Passanger Details</h1>
       </div>
       <div className="inputContainer">
         <input

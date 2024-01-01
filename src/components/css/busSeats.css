@@ -1,0 +1,65 @@
+.bus-container {
+  width: 400px;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+h4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.seat-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.seat {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.seat.available {
+  background-color: #b3ffb3;
+}
+
+.seat.booked {
+  background-color: #ffcccc;
+  cursor: not-allowed;
+}
+
+.right-column,
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.seat-Selection-container {
+  display: flex;
+  flex-direction: row;
+  padding: 20px 0px 0px 0px;
+  justify-content: center;
+  gap: 20px;
+}
+
+.list-group {
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.activate {
+  background-color: #b3ffb3;
+}
