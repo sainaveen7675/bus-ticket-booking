@@ -16,16 +16,15 @@ const BookingContent = () => {
   const [selectedOption1, setSelectedOption1] = useState("");
   const handleDropdownChange1 = (event) => {
     setSelectedOption1(event.target.value);
-    // Do other things based on the selected value if needed
-    console.log("Selected option:", event.target.value);
   };
 
   const [selectedOption2, setSelectedOption2] = useState("");
   const handleDropdownChange2 = (event) => {
     setSelectedOption2(event.target.value);
-    // Do other things based on the selected value if needed
-    console.log("Selected option:", event.target.value);
   };
+  
+  const filteredCities = cities.filter(city => city.value !== selectedOption1);
+  cities = cities.filter(city => city.value !== selectedOption2);
   
   const [x1, setX1] = useState("");
   const [x2, setX2] = useState("");
@@ -77,7 +76,7 @@ const BookingContent = () => {
               value={selectedOption2} onChange={handleDropdownChange2}
             >
               <option selected>To</option>
-              {cities.map((city, index) => (
+              {filteredCities.map((city, index) => (
                 <option key={city.value} value={city.value}>{city.label}</option>
               ))}
             </select>
@@ -91,6 +90,7 @@ const BookingContent = () => {
             fill="currentColor"
             className="bi bi-calendar-event-fill"
             viewBox="0 0 16 16"
+            values=""
           >
             <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5" />
           </svg>

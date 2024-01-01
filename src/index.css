@@ -1,3 +1,7 @@
-body{
-    background-color: #29313F;
+body {
+    height: 740px;
+  background-image: url("./assets/bus-background.jpg");
+  background-size: cover; /* Cover the entire container */
+  background-repeat: no-repeat; /* Prevent repeating the image */
+  background-position: center;
 }

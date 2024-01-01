@@ -13,5 +13,13 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
+}
+
+.alert {
+    color: red;
+    height: auto;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
 }
