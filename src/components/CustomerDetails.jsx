@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./css/customer.css";
 import "./css/booking.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const CustomerDetails = () => {
   const navigate = useNavigate(); // Use useNavigate hook
-
   const genders = [
     { value: "Male", label: "Male" },
     { value: "Female", label: "Female" },
@@ -16,9 +15,28 @@ const CustomerDetails = () => {
   const [mobile, setMobile] = useState("");
   const [gender, setGender] = useState("");
   const [age, setAge] = useState("");
+  // params data
+  const [paramFrom, setFrom] = useState("");
+  const [paramTo, setTo] = useState("");
+  const [paramDate, setDate] = useState("");
+  const [paramCost, setCost] = useState("");
   // Alerts
   const [alert, setAlert] = useState("");
-  //const [mobileAlert, setMobileAlert] = useState("");
+
+  const [searchParams] = useSearchParams();
+  const fromCity = searchParams.get("from");
+  const toCity = searchParams.get("to");
+  const selectedDate = searchParams.get("date");
+  const cost = searchParams.get("cost");
+
+  useEffect(() => {
+    // Set states using URL parameters when the component mounts
+    setFrom(fromCity);
+    setTo(toCity);
+    setDate(selectedDate);
+    setCost(cost);
+  }, []);
+
   const handleContinue = () => {
     if (!fullName || !email || !mobile || !gender || !age) {
       setAlert("Please enter all the fields");
@@ -32,7 +50,12 @@ const CustomerDetails = () => {
         setAlert("Please enter a valid 10-digit mobile number.");
         return; // Stop execution if mobile number is invalid
       } else {
-        navigate("/passangerDetails/seatAndTimeSelection");
+        console.log(paramFrom);
+        console.log(paramTo);
+        console.log(paramDate);
+        navigate(
+          `/passangerDetails/seatAndTimeSelection?name=${fullName}&email=${email}&mobile=${mobile}&gender=${gender}&age=${age}&from=${paramFrom}&to=${paramTo}&date=${paramDate}&cost=${paramCost}`
+        );
       }
     }
   };
@@ -78,7 +101,7 @@ const CustomerDetails = () => {
           onChange={(e) => setGender(e.target.value)}
         >
           <option value="">Gender</option>
-          {genders.map((gender, index) => (
+          {genders.map((gender) => (
             <option key={gender.value} value={gender.value}>
               {gender.label}
             </option>

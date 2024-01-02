@@ -1,25 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./css/Booking.css";
 import "react-datepicker/dist/react-datepicker.css";
-import DatePicker from 'react-datepicker';
+import DatePicker from "react-datepicker";
 import { useNavigate } from "react-router-dom";
 
 const BookingContent = () => {
   const navigate = useNavigate();
-  const [selectedDate, setSelectedDate] = useState(null);
 
   let cities = [
-    { value: "Hyderabad", label: "Hyderabad" },
-    { value: "Mumbai", label: "Mumbai" },
-    { value: "Chennai", label: "Chennai" },
-    { value: "Delhi", label: "Delhi" },
-    { value: "Banglore", label: "Banglore" },
-    { value: "Kolkata", label: "Kolkata" },
-    { value: "Pune", label: "Pune" },
+    { value: "Chennai", label: "Chennai", dis: 1 },
+    { value: "Banglore", label: "Banglore", dis: 2 },
+    { value: "Hyderabad", label: "Hyderabad", dis: 3 },
+    { value: "Pune", label: "Pune", dis: 4 },
+    { value: "Mumbai", label: "Mumbai", dis: 5 },
+    { value: "Kolkata", label: "Kolkata", dis: 6 },
+    { value: "Delhi", label: "Delhi", dis: 7 },
   ];
 
   const [selectedOption1, setSelectedOption1] = useState("");
   const [selectedOption2, setSelectedOption2] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
+  const [cost, setCost] = useState("");
 
   const filteredCities = cities.filter(
     (city) => city.value !== selectedOption1
@@ -27,6 +28,14 @@ const BookingContent = () => {
   cities = cities.filter((city) => city.value !== selectedOption2);
 
   const [alert, setAlert] = useState("");
+  const city1 = cities.find((city) => city.value === selectedOption1);
+  const city2 = filteredCities.find((city) => city.value === selectedOption2);
+
+  const distance = city1 && city2 ? Math.abs(city1.dis - city2.dis) * 955 : 0;
+
+  useEffect(() => {
+    setCost(distance);
+  }, [distance]);
 
   const btnClick = () => {
     console.log("clicked");
@@ -34,7 +43,10 @@ const BookingContent = () => {
     if (!selectedOption1 || !selectedOption2 || !selectedDate) {
       setAlert("Please enter all the fields");
     } else {
-      navigate("/passangerDetails");
+      console.log(cost);
+      navigate(
+        `/passangerDetails?from=${selectedOption1}&to=${selectedOption2}&date=${selectedDate}&cost=${cost}`
+      );
     }
   };
 
@@ -54,7 +66,7 @@ const BookingContent = () => {
               onChange={(e) => setSelectedOption1(e.target.value)}
             >
               <option value="">From</option>
-              {cities.map((city, index) => (
+              {cities.map((city) => (
                 <option key={city.value} value={city.value}>
                   {city.label}
                 </option>
@@ -83,7 +95,7 @@ const BookingContent = () => {
               onChange={(e) => setSelectedOption2(e.target.value)}
             >
               <option selected>To</option>
-              {filteredCities.map((city, index) => (
+              {filteredCities.map((city) => (
                 <option key={city.value} value={city.value}>
                   {city.label}
                 </option>

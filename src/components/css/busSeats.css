@@ -63,3 +63,9 @@ h4 {
 .activate {
   background-color: #b3ffb3;
 }
+
+.paymentBtn{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
