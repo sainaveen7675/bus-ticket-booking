@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./css/busSeats.css";
 import "./css/popup.css";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const SeatSelection = () => {
+  const navigate = useNavigate();
   const seats = [
     "R2",
     "R4",
@@ -96,6 +97,9 @@ const SeatSelection = () => {
   // Function to toggle the popup
   const togglePopup = () => {
     setIsOpen(!isOpen);
+    if (isOpen === true) {
+      navigate(`/passangerDetails/seatAndTimeSelection/ticket?name=${name}&email=${email}&mobile=${mobile}&gender=${gender}&age=${age}&from=${from}&to=${to}&date=${date}&cost=${cost}&seat=${selectedSeats}&time=${selectedTime}`);
+    }
   };
 
   const renderSeatRow = (start, end) => {
@@ -150,7 +154,7 @@ const SeatSelection = () => {
       <div className="button">
         <button
           type="button"
-          class="btn btn-secondary btn-lg"
+          className="btn btn-secondary btn-lg"
           onClick={handleSeatBooking}
         >
           Confirm

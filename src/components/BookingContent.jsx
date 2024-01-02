@@ -65,7 +65,7 @@ const BookingContent = () => {
               value={selectedOption1}
               onChange={(e) => setSelectedOption1(e.target.value)}
             >
-              <option value="">From</option>
+              <option defaultValue>From</option>
               {cities.map((city) => (
                 <option key={city.value} value={city.value}>
                   {city.label}
@@ -82,7 +82,7 @@ const BookingContent = () => {
             viewBox="0 0 16 16"
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"
             />
           </svg>
@@ -94,7 +94,7 @@ const BookingContent = () => {
               value={selectedOption2}
               onChange={(e) => setSelectedOption2(e.target.value)}
             >
-              <option selected>To</option>
+              <option defaultValue>To</option>
               {filteredCities.map((city) => (
                 <option key={city.value} value={city.value}>
                   {city.label}
@@ -127,7 +127,7 @@ const BookingContent = () => {
         <div className="button">
           <button
             type="button"
-            class="btn btn-secondary btn-lg"
+            className="btn btn-secondary btn-lg"
             onClick={() => {
               btnClick();
             }}

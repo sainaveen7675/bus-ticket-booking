@@ -1,0 +1,9 @@
+.Ticket{
+    color: orangered;
+    display: flex;
+    justify-content: center;
+}
+
+.ticketConfirmed{
+    margin: 0px 30px 0px 30px;
+}

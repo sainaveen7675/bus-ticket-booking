@@ -121,7 +121,7 @@ const CustomerDetails = () => {
         <div className="button">
           <button
             type="button"
-            class="btn btn-secondary btn-lg"
+            className="btn btn-secondary btn-lg"
             onClick={handleContinue}
           >
             Continue

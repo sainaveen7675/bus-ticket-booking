@@ -13,7 +13,7 @@ const navbar = () => {
     <div>
       <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark" >
         <div className="container-fluid">
-          <h3 className="navbar-brand" style={style} onClick={<CustomerDetails/>}>
+          <h3 className="navbar-brand" style={style}>
             Book My Ticket
           </h3>
         </div>

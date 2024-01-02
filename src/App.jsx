@@ -4,6 +4,7 @@ import Navbar from "./components/navbar";
 import BookingContent from "./components/BookingContent";
 import CustomerDetails from "./components/CustomerDetails";
 import SeatSelection from "./components/SeatSelection";
+import Ticket from "./components/Ticket";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             <Route exact path="/" element={<BookingContent />} />
             <Route path="/passangerDetails" element={<CustomerDetails />} />
             <Route path="/passangerDetails/seatAndTimeSelection" element={<SeatSelection />} />
+            <Route path="/passangerDetails/seatAndTimeSelection/ticket" element={<Ticket/>} />
             
           </Routes>
         </div>
