@@ -54,16 +54,32 @@ const Ticket = () => {
         <div className="busDetails">
           <h5>
             <strong>
-              <u>Bus Details</u>
+              <u>Trip Details</u>
             </strong>
           </h5>
+          <div className="departAndArival">
+            <p>
+              <strong>Boarding Point: </strong>
+              {fromCity}
+            </p>
+            <p>
+              <strong>Droping Point: </strong>
+              {toCity}
+            </p>
+          </div>
+          <div className="departAndArival">
+            <p>
+              <strong>Departure Date: </strong>
+              {fromCity}
+            </p>
+            <p>
+              <strong>Departure Time: </strong>
+              {time}
+            </p>
+          </div>
           <p>
             <strong>Seat No: </strong>
             {seat}
-          </p>
-          <p>
-            <strong>Departure Time: </strong>
-            {time}
           </p>
         </div>
         <div>

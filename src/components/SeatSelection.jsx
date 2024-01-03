@@ -53,15 +53,15 @@ const SeatSelection = () => {
   const paramCost = searchParams.get("cost");
 
   // params data
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
-  const [date, setDate] = useState("");
+  const [boardingPoint, setFrom] = useState("");
+  const [droppingPoint, setTo] = useState("");
+  const [departureDate, setDate] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
   const [gender, setGender] = useState("");
   const [age, setAge] = useState("");
-  const [cost, setCost] = useState("");
+  const [amountPaid, setCost] = useState(null);
 
   useEffect(() => {
     // Set states using URL parameters when the component mounts
@@ -76,18 +76,15 @@ const SeatSelection = () => {
     setCost(paramCost);
   }, []);
 
-  const [selectedTime, setSelectedTime] = useState("");
-  const [selectedSeats, setSelectedSeats] = useState("");
+  const [departureTime, setSelectedTime] = useState("");
+  const [seatNo, setSelectedSeats] = useState("");
 
   const [alert, setAlert] = useState("");
   const handleSeatBooking = () => {
-    if (!selectedTime || !selectedSeats) {
+    if (!departureTime || !seatNo) {
       setAlert("Please select seat and departure time");
     } else {
       setAlert("");
-      console.log(from);
-      console.log(to);
-      console.log(date);
       togglePopup();
     }
   };
@@ -97,8 +94,17 @@ const SeatSelection = () => {
   // Function to toggle the popup
   const togglePopup = () => {
     setIsOpen(!isOpen);
+    const ticketDetails = {name, email, mobile, gender, age, boardingPoint, droppingPoint, departureDate, amountPaid, seatNo, departureTime}
+    console.log(ticketDetails);
     if (isOpen === true) {
-      navigate(`/passangerDetails/seatAndTimeSelection/ticket?name=${name}&email=${email}&mobile=${mobile}&gender=${gender}&age=${age}&from=${from}&to=${to}&date=${date}&cost=${cost}&seat=${selectedSeats}&time=${selectedTime}`);
+      fetch("http://localhost:8080/api/travelbookings/save",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(ticketDetails)
+      }).then(()=>{
+        console.log("Ticket Details Added To Database");
+      })
+      navigate(`/passangerDetails/seatAndTimeSelection/ticket?name=${name}&email=${email}&mobile=${mobile}&gender=${gender}&age=${age}&from=${boardingPoint}&to=${droppingPoint}&date=${departureDate}&cost=${amountPaid}&seat=${seatNo}&time=${departureTime}`);
     }
   };
 
@@ -108,7 +114,7 @@ const SeatSelection = () => {
         {seats.slice(start, end).map((seatNumber, index) => (
           <div
             key={index}
-            className={selectedSeats === seatNumber ? "seat activate" : "seat"}
+            className={seatNo === seatNumber ? "seat activate" : "seat"}
             onClick={() => setSelectedSeats(seatNumber)}
           >
             {seatNumber}
@@ -137,7 +143,7 @@ const SeatSelection = () => {
             {times.map((time, index) => (
               <li
                 className={
-                  selectedTime === time
+                  departureTime === time
                     ? "list-group-item activate"
                     : "list-group-item"
                 }
@@ -165,24 +171,24 @@ const SeatSelection = () => {
               <h2>Confirm Details</h2>
               <h5>
                 <strong>From: </strong>
-                {from}
+                {boardingPoint}
               </h5>
               <h5>
                 <strong>To: </strong>
-                {to}
+                {droppingPoint}
               </h5>
               <h5>
                 <strong>Date: </strong>
-                {date}
+                {departureDate}
               </h5>
               <div>
                 <h5>
                   <strong>Seat No: </strong>
-                  {selectedSeats}
+                  {seatNo}
                 </h5>
                 <h5>
                   <strong>Depart time: </strong>
-                  {selectedTime}
+                  {departureTime}
                 </h5>
               </div>
               <br />
@@ -198,7 +204,7 @@ const SeatSelection = () => {
               <br />
               <h5>
                 <strong>Amount to be paid: </strong>
-                {cost}
+                {amountPaid}
               </h5>
 
               {/* Close button */}
