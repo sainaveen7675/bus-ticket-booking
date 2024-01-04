@@ -15,6 +15,7 @@ const Ticket = () => {
   const age = searchParams.get("age");
   const seat = searchParams.get("seat");
   const time = searchParams.get("time");
+  const transactionID = searchParams.get("transactionID");
 
   return (
     <div className="ticketConfirmed">
@@ -92,9 +93,12 @@ const Ticket = () => {
             <strong>Amount Paid: </strong>
             {cost} /-
           </p>
+          <p>
+            <strong>Transaction ID: </strong>
+            {transactionID}
+          </p>
         </div>
       </div>
-      <button>Download PDF</button>
     </div>
   );
 };

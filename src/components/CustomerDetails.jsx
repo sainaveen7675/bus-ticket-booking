@@ -37,6 +37,13 @@ const CustomerDetails = () => {
     setCost(cost);
   }, []);
 
+  const handleAgeValidation = (e) => {
+    const enteredAge = parseInt(e.target.value, 10); // Parse the entered value to an integer
+    if (enteredAge < 1) { 
+      setAlert("Please enter a valid age number"); // Show an alert message
+    }
+  };
+
   const handleContinue = () => {
     if (!fullName || !email || !mobile || !gender || !age) {
       setAlert("Please enter all the fields");
@@ -59,6 +66,8 @@ const CustomerDetails = () => {
       }
     }
   };
+
+  
 
   return (
     <div>
@@ -115,6 +124,7 @@ const CustomerDetails = () => {
           aria-describedby="button-addon2"
           value={age}
           onChange={(e) => setAge(e.target.value)}
+          onBlur={handleAgeValidation}
         ></input>
         <div className="alert">{alert}</div>
 

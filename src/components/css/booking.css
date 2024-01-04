@@ -1,63 +1,65 @@
-
-
-.trip{
-    display: flex;
-    justify-content: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    margin-bottom: 20px;
+.trip {
+  display: flex;
+  justify-content: center;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin-bottom: 20px;
 }
-.selectionContainer{
-    display: flex;
-    justify-content: space-between;
-    padding-left: 60px;
-    padding-right: 60px;
+.selectionContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 60px;
+  padding-right: 60px;
 }
 
-.form-select{
-    cursor: pointer;
-    border: 1px solid #29313F;
-    border-radius: 20px;
+.form-select {
+  cursor: pointer;
+  border: 1px solid #29313f;
+  border-radius: 20px;
+  
 }
 
-.input-group{
-    width: 45%;
-    display: flex; 
-    
+.input-group {
+  width: 45%;
+  display: flex;
 }
 
-.bi-arrow-left-right{
-    width: 20px;
-    height: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+.bi-arrow-left-right {
+  width: 20px;
+  height: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.fs{
-    height: 60px;
+.fs {
+  height: 60px;
 }
 
-
-.bi-calendar-event-fill{
-    width: 30px;
-    height: 30px;
-    margin-top: 13px;
-    
+.bi-calendar-event-fill {
+  width: 30px;
+  height: 30px;
+  margin-top: 13px;
 }
 
-.datepicker-container{
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-    gap: 5px;
+.datepicker-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  gap: 5px;
 }
 
-
-.button{
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+.button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  
 }
 
 .btn:active {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  }
+  letter-spacing: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transform: translateY(3px);
+}
+
+.btn {
+    letter-spacing: 2px;
+}

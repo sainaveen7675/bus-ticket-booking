@@ -62,6 +62,7 @@ const SeatSelection = () => {
   const [gender, setGender] = useState("");
   const [age, setAge] = useState("");
   const [amountPaid, setCost] = useState(null);
+  const [transactionID, setTransactionID] = useState("");
 
   useEffect(() => {
     // Set states using URL parameters when the component mounts
@@ -94,8 +95,9 @@ const SeatSelection = () => {
   // Function to toggle the popup
   const togglePopup = () => {
     setIsOpen(!isOpen);
-    const ticketDetails = {name, email, mobile, gender, age, boardingPoint, droppingPoint, departureDate, amountPaid, seatNo, departureTime}
+    const ticketDetails = {name, email, mobile, gender, age, boardingPoint, droppingPoint, departureDate, amountPaid, seatNo, departureTime, transactionID}
     console.log(ticketDetails);
+    generateRandomCode();
     if (isOpen === true) {
       fetch("http://localhost:8080/api/travelbookings/save",{
         method:"POST",
@@ -104,9 +106,30 @@ const SeatSelection = () => {
       }).then(()=>{
         console.log("Ticket Details Added To Database");
       })
-      navigate(`/passangerDetails/seatAndTimeSelection/ticket?name=${name}&email=${email}&mobile=${mobile}&gender=${gender}&age=${age}&from=${boardingPoint}&to=${droppingPoint}&date=${departureDate}&cost=${amountPaid}&seat=${seatNo}&time=${departureTime}`);
+      navigate(`/passangerDetails/seatAndTimeSelection/ticket?name=${name}&email=${email}&mobile=${mobile}&gender=${gender}&age=${age}&from=${boardingPoint}&to=${droppingPoint}&date=${departureDate}&cost=${amountPaid}&seat=${seatNo}&time=${departureTime}&transactionID=${transactionID}`);
     }
   };
+
+  const generateRandomCode = () => {
+    let result = '';
+    const length = 12;
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+  
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+  
+    
+    setTransactionID(result);
+  }
+
+  
+ 
+  
+
+
+
 
   const renderSeatRow = (start, end) => {
     return (

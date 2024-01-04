@@ -3,6 +3,9 @@ import "./css/Booking.css";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { useNavigate } from "react-router-dom";
+import { addDays } from 'date-fns';
+
+const today = new Date();
 
 const BookingContent = () => {
   const navigate = useNavigate();
@@ -108,6 +111,7 @@ const BookingContent = () => {
           <DatePicker
             selected={selectedDate}
             onChange={(date) => setSelectedDate(date)}
+            minDate={today}
             dateFormat="dd/MM/yyyy" // You can customize the format
             isClearable // Adds a clear button to reset the date
             className="form-select fs"
