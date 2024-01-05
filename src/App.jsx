@@ -18,7 +18,6 @@ function App() {
             <Route path="/passangerDetails" element={<CustomerDetails />} />
             <Route path="/passangerDetails/seatAndTimeSelection" element={<SeatSelection />} />
             <Route path="/passangerDetails/seatAndTimeSelection/ticket" element={<Ticket/>} />
-            
           </Routes>
         </div>
       </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import CustomerDetails from "./CustomerDetails";
 
 const navbar = () => {
 
