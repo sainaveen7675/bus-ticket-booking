@@ -5,6 +5,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 
 const CustomerDetails = () => {
   const navigate = useNavigate(); // Use useNavigate hook
+  
   const genders = [
     { value: "Male", label: "Male" },
     { value: "Female", label: "Female" },
